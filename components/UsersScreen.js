@@ -27,13 +27,13 @@ const UsersScreen = () => {
     };
 
     const handleClickUser = (id) => {
-        alert(`User ID: ${id}`)
+        alert(`User's Index from 0: ${id}`)
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{height: 70, width: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#e25b28', paddingTop: 10}}>
-                <Text style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>Users</Text>
+            <View style={styles.headerContainer}>
+                <Text style={{fontSize: 25, fontWeight: 'bold', color: 'white'}}>Users List</Text>
             </View>
             {
                 <FlatList
@@ -62,11 +62,11 @@ const UsersScreen = () => {
                         fetchUsers(callback)
                     }}
                     renderItem={
-                        ({ item }) => (
+                        ({ item, index }) => (
                             <View style={[styles.userCard, styles.boxShadow]}>
                                 <TouchableOpacity 
                                     style={{width: '100%', height: '100%'}}
-                                    onPress={() => handleClickUser(item.login.uuid)}
+                                    onPress={() => handleClickUser(index)}
                                 >
                                     <View style={{flexDirection: 'row'}}>
                                         <Image
@@ -125,4 +125,13 @@ const styles = StyleSheet.create({
         shadowRadius: 1.5,
         elevation: 2
     },
+    headerContainer: {
+        height: 70, 
+        width: '100%', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: '#e25b28', 
+        paddingTop: 10,
+        flexDirection: 'row'
+    }
 })
